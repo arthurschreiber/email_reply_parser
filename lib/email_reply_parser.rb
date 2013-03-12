@@ -165,8 +165,7 @@ class EmailReplyParser
     #
     # Returns a String
     def normalize_text(text)
-      # in 1.9 we want to operate on the raw bytes
-      text = text.dup.force_encoding('binary') if text.respond_to?(:force_encoding)
+      text = text.dup
 
       # Normalize line endings.
       text.gsub!("\r\n", "\n")
