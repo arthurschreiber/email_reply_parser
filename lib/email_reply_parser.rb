@@ -101,7 +101,7 @@ class EmailReplyParser
 
       # Use the StringScanner to pull out each line of the email content.
       @scanner = StringScanner.new(text)
-      while line = @scanner.scan_until(/\n/n)
+      while line = @scanner.scan_until(/\n/)
         scan_line(line)
       end
 
@@ -126,7 +126,7 @@ class EmailReplyParser
     EMPTY = "".freeze
 
     COMMON_REPLY_HEADER_REGEXES = [
-      /^On(.+)wrote:$/nm,
+      /^On(.+)wrote:$/m,
       /\A\d{4}\/\d{1,2}\/\d{1,2}\s+.{1,80}\s<[^@]+@[^@]+>\Z/,
     ]
 
@@ -244,7 +244,7 @@ class EmailReplyParser
 
       # We're looking for leading `>`'s to see if this line is part of a
       # quoted Fragment.
-      is_quoted = !!(line =~ /^>+/n)
+      is_quoted = !!(line =~ /^>+/)
 
       # Note that a common reply header also counts as part of the quoted
       # Fragment, even though it doesn't start with `>`.
